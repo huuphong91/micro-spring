@@ -19,16 +19,15 @@ import java.util.UUID;
 public class OrderEntity {
     @Id
     private UUID id;
-    private UUID customerId;
-    private UUID restaurantId;
+    private UUID userId;
     private UUID trackingId;
     private BigDecimal price;
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
     private String failureMessages;
 
-    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
-    private OrderAddressEntity address;
+//    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+//    private OrderAddressEntity address;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItemEntity> items;
