@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -17,7 +18,6 @@
         <module name="payment-service" />
         <module name="api-gateway-service" />
         <module name="common-domain" />
-        <module name="order-application" />
         <module name="saga" />
       </profile>
     </annotationProcessing>
@@ -30,7 +30,6 @@
       <module name="common-domain" options="-parameters" />
       <module name="food-ordering-system" options="-parameters" />
       <module name="infrastructure" options="-parameters" />
-      <module name="order-application" options="-parameters" />
       <module name="order-container" options="-parameters" />
       <module name="order-dataacess" options="-parameters" />
       <module name="order-domain" options="-parameters" />
