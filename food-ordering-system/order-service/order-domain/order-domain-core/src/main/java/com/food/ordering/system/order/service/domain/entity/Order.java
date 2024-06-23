@@ -182,7 +182,7 @@ public class Order extends AggregateRoot<OrderId> {
         }
 
         public Builder userId(UserId val) {
-            customerId = val;
+            userId = val;
             return this;
         }
 

@@ -22,8 +22,8 @@
         <module name="api-gateway-service" />
         <module name="common-domain" />
         <module name="order-application" />
-        <module name="saga" />
         <module name="order-domain-core" />
+        <module name="saga" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

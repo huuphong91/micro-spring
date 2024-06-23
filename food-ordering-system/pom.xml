@@ -22,7 +22,6 @@
         <module>payment-service</module>
         <module>user-service</module>
         <module>api-gateway-service</module>
-        <module>infrastructure</module>
         <module>infrastructure/kafka</module>
     </modules>
 
