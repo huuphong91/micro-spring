@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class UserGlobalExceptionHandler extends GlobalExceptionHandler {
 
     @ResponseBody
-    @ExceptionHandler(value = {CustomerDomainException.class})
+    @ExceptionHandler(value = {UserDomainException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorDTO handleException(UserDomainException exception) {
         log.error(exception.getMessage(), exception);
