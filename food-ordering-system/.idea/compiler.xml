@@ -25,12 +25,13 @@
         <module name="kafka-config-data" />
         <module name="outbox" />
         <module name="payment-dataaccess" />
+        <module name="user-application-service" />
         <module name="user-container" />
         <module name="order-container" />
-        <module name="user-domain" />
         <module name="api-gateway-service" />
         <module name="payment-container" />
         <module name="user-messaging" />
+        <module name="user-domain-core" />
         <module name="user-application" />
       </profile>
     </annotationProcessing>
@@ -72,9 +73,11 @@
       <module name="rabbitmq" options="-parameters" />
       <module name="saga" options="-parameters" />
       <module name="user-application" options="-parameters" />
+      <module name="user-application-service" options="-parameters" />
       <module name="user-container" options="-parameters" />
       <module name="user-dataaccess" options="-parameters" />
       <module name="user-domain" options="-parameters" />
+      <module name="user-domain-core" options="-parameters" />
       <module name="user-messaging" options="-parameters" />
       <module name="user-service" options="-parameters" />
     </option>

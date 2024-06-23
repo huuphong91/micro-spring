@@ -1,13 +1,13 @@
 package com.food.ordering.system.payment.service.domain.entity;
 
 import com.food.ordering.system.domain.entity.BaseEntity;
-import com.food.ordering.system.domain.valueobject.CustomerId;
+import com.food.ordering.system.domain.valueobject.UserId;
 import com.food.ordering.system.domain.valueobject.Money;
 import com.food.ordering.system.payment.service.domain.valueobject.CreditEntryId;
 
 public class CreditEntry extends BaseEntity<CreditEntryId> {
 
-    private final CustomerId customerId;
+    private final UserId customerId;
     private Money totalCreditAmount;
 
     public void addCreditAmount(Money amount) {
@@ -20,7 +20,7 @@ public class CreditEntry extends BaseEntity<CreditEntryId> {
 
     private CreditEntry(Builder builder) {
         setId(builder.creditEntryId);
-        customerId = builder.customerId;
+        customerId = builder.userId;
         totalCreditAmount = builder.totalCreditAmount;
     }
 
@@ -29,7 +29,7 @@ public class CreditEntry extends BaseEntity<CreditEntryId> {
     }
 
 
-    public CustomerId getCustomerId() {
+    public UserId getUserId() {
         return customerId;
     }
 
@@ -39,7 +39,7 @@ public class CreditEntry extends BaseEntity<CreditEntryId> {
 
     public static final class Builder {
         private CreditEntryId creditEntryId;
-        private CustomerId customerId;
+        private UserId userId;
         private Money totalCreditAmount;
 
         private Builder() {
@@ -50,8 +50,8 @@ public class CreditEntry extends BaseEntity<CreditEntryId> {
             return this;
         }
 
-        public Builder customerId(CustomerId val) {
-            customerId = val;
+        public Builder customerId(UserId val) {
+            userId = val;
             return this;
         }
 

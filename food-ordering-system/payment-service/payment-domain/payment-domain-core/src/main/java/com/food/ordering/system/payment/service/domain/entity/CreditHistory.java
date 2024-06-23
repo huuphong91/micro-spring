@@ -1,20 +1,20 @@
 package com.food.ordering.system.payment.service.domain.entity;
 
 import com.food.ordering.system.domain.entity.BaseEntity;
-import com.food.ordering.system.domain.valueobject.CustomerId;
+import com.food.ordering.system.domain.valueobject.UserId;
 import com.food.ordering.system.domain.valueobject.Money;
 import com.food.ordering.system.payment.service.domain.valueobject.CreditHistoryId;
 import com.food.ordering.system.payment.service.domain.valueobject.TransactionType;
 
 public class CreditHistory extends BaseEntity<CreditHistoryId> {
 
-    private final CustomerId customerId;
+    private final UserId customerId;
     private final Money amount;
     private final TransactionType transactionType;
 
     private CreditHistory(Builder builder) {
         setId(builder.creditHistoryId);
-        customerId = builder.customerId;
+        customerId = builder.userId;
         amount = builder.amount;
         transactionType = builder.transactionType;
     }
@@ -24,7 +24,7 @@ public class CreditHistory extends BaseEntity<CreditHistoryId> {
     }
 
 
-    public CustomerId getCustomerId() {
+    public UserId getUserId() {
         return customerId;
     }
 
@@ -38,7 +38,7 @@ public class CreditHistory extends BaseEntity<CreditHistoryId> {
 
     public static final class Builder {
         private CreditHistoryId creditHistoryId;
-        private CustomerId customerId;
+        private UserId userId;
         private Money amount;
         private TransactionType transactionType;
 
@@ -50,8 +50,8 @@ public class CreditHistory extends BaseEntity<CreditHistoryId> {
             return this;
         }
 
-        public Builder customerId(CustomerId val) {
-            customerId = val;
+        public Builder userId(UserId val) {
+            userId = val;
             return this;
         }
 

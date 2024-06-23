@@ -15,7 +15,7 @@ public class PaymentRequest {
     private String id;
     private String sagaId;
     private String orderId;
-    private String customerId;
+    private String userId;
     private BigDecimal price;
     private Instant createdAt;
     private PaymentOrderStatus paymentOrderStatus;

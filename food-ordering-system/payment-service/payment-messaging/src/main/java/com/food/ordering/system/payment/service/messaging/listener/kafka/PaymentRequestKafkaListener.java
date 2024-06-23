@@ -1,12 +1,14 @@
 package com.food.ordering.system.payment.service.messaging.listener.kafka;
 
 import com.food.ordering.system.kafka.consumer.KafkaConsumer;
+import com.food.ordering.system.kafka.order.avro.model.PaymentOrderStatus;
+import com.food.ordering.system.kafka.order.avro.model.PaymentRequestAvroModel;
 import com.food.ordering.system.payment.service.domain.exception.PaymentApplicationServiceException;
 import com.food.ordering.system.payment.service.domain.exception.PaymentNotFoundException;
 import com.food.ordering.system.payment.service.domain.ports.input.message.listener.PaymentRequestMessageListener;
 import com.food.ordering.system.payment.service.messaging.mapper.PaymentMessagingDataMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.postgresql.util.PSQLState;
+//import org.postgresql.util.PSQLState;
 import org.springframework.dao.DataAccessException;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.KafkaHeaders;
@@ -34,8 +36,8 @@ public class PaymentRequestKafkaListener implements KafkaConsumer<PaymentRequest
     @KafkaListener(id = "${kafka-consumer-config.payment-consumer-group-id}",
             topics = "${payment-service.payment-request-topic-name}")
     public void receive(@Payload List<PaymentRequestAvroModel> messages,
-                        @Header(KafkaHeaders.RECEIVED_MESSAGE_KEY) List<String> keys,
-                        @Header(KafkaHeaders.RECEIVED_PARTITION_ID) List<Integer> partitions,
+                        @Header(KafkaHeaders.RECEIVED_KEY) List<String> keys,
+                        @Header(KafkaHeaders.RECEIVED_PARTITION) List<Integer> partitions,
                         @Header(KafkaHeaders.OFFSET) List<Long> offsets) {
         log.info("{} number of payment requests received with keys:{}, partitions:{} and offsets: {}",
                 messages.size(),
@@ -56,8 +58,9 @@ public class PaymentRequestKafkaListener implements KafkaConsumer<PaymentRequest
                 }
             } catch (DataAccessException e) {
                 SQLException sqlException = (SQLException) e.getRootCause();
-                if (sqlException != null && sqlException.getSQLState() != null &&
-                        PSQLState.UNIQUE_VIOLATION.getState().equals(sqlException.getSQLState())) {
+                if (sqlException != null && sqlException.getSQLState() != null
+                       // PSQLState.UNIQUE_VIOLATION.getState().equals(sqlException.getSQLState())) {
+                        ) {
                     //NO-OP for unique constraint exception
                     log.error("Caught unique constraint exception with sql state: {} " +
                                     "in PaymentRequestKafkaListener for order id: {}",

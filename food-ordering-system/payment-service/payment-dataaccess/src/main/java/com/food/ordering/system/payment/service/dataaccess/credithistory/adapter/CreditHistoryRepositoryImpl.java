@@ -1,6 +1,6 @@
 package com.food.ordering.system.payment.service.dataaccess.credithistory.adapter;
 
-import com.food.ordering.system.domain.valueobject.CustomerId;
+import com.food.ordering.system.domain.valueobject.UserId;
 import com.food.ordering.system.payment.service.dataaccess.credithistory.entity.CreditHistoryEntity;
 import com.food.ordering.system.payment.service.dataaccess.credithistory.mapper.CreditHistoryDataAccessMapper;
 import com.food.ordering.system.payment.service.dataaccess.credithistory.repository.CreditHistoryJpaRepository;
@@ -31,7 +31,7 @@ public class CreditHistoryRepositoryImpl implements CreditHistoryRepository {
     }
 
     @Override
-    public Optional<List<CreditHistory>> findByCustomerId(CustomerId customerId) {
+    public Optional<List<CreditHistory>> findByCustomerId(UserId customerId) {
         Optional<List<CreditHistoryEntity>> creditHistory =
                 creditHistoryJpaRepository.findByCustomerId(customerId.getValue());
         return creditHistory

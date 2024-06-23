@@ -1,10 +1,11 @@
 package com.food.ordering.system.payment.service.domain.entity;
 
 import com.food.ordering.system.domain.entity.AggregateRoot;
-import com.food.ordering.system.domain.valueobject.CustomerId;
+import com.food.ordering.system.domain.valueobject.UserId;
 import com.food.ordering.system.domain.valueobject.Money;
 import com.food.ordering.system.domain.valueobject.OrderId;
 import com.food.ordering.system.domain.valueobject.PaymentStatus;
+import com.food.ordering.system.domain.valueobject.UserId;
 import com.food.ordering.system.payment.service.domain.valueobject.PaymentId;
 
 import java.time.ZoneId;
@@ -15,7 +16,7 @@ import java.util.UUID;
 public class Payment extends AggregateRoot<PaymentId> {
 
     private final OrderId orderId;
-    private final CustomerId customerId;
+    private final UserId userId;
     private final Money price;
 
     private PaymentStatus paymentStatus;
@@ -39,7 +40,7 @@ public class Payment extends AggregateRoot<PaymentId> {
     private Payment(Builder builder) {
         setId(builder.paymentId);
         orderId = builder.orderId;
-        customerId = builder.customerId;
+        userId = builder.userId;
         price = builder.price;
         paymentStatus = builder.paymentStatus;
         createdAt = builder.createdAt;
@@ -54,8 +55,8 @@ public class Payment extends AggregateRoot<PaymentId> {
         return orderId;
     }
 
-    public CustomerId getCustomerId() {
-        return customerId;
+    public UserId getUserId() {
+        return userId;
     }
 
     public Money getPrice() {
@@ -73,7 +74,7 @@ public class Payment extends AggregateRoot<PaymentId> {
     public static final class Builder {
         private PaymentId paymentId;
         private OrderId orderId;
-        private CustomerId customerId;
+        private UserId userId;
         private Money price;
         private PaymentStatus paymentStatus;
         private ZonedDateTime createdAt;
@@ -91,8 +92,8 @@ public class Payment extends AggregateRoot<PaymentId> {
             return this;
         }
 
-        public Builder customerId(CustomerId val) {
-            customerId = val;
+        public Builder userId(UserId val) {
+            userId = val;
             return this;
         }
 

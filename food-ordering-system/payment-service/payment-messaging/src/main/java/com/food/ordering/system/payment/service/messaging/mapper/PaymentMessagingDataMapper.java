@@ -1,6 +1,9 @@
 package com.food.ordering.system.payment.service.messaging.mapper;
 
 import com.food.ordering.system.domain.valueobject.PaymentOrderStatus;
+import com.food.ordering.system.kafka.order.avro.model.PaymentRequestAvroModel;
+import com.food.ordering.system.kafka.order.avro.model.PaymentResponseAvroModel;
+import com.food.ordering.system.kafka.order.avro.model.PaymentStatus;
 import com.food.ordering.system.payment.service.domain.dto.PaymentRequest;
 import com.food.ordering.system.payment.service.domain.outbox.model.OrderEventPayload;
 import org.springframework.stereotype.Component;
@@ -14,7 +17,7 @@ public class PaymentMessagingDataMapper {
         return PaymentRequest.builder()
                 .id(paymentRequestAvroModel.getId())
                 .sagaId(paymentRequestAvroModel.getSagaId())
-                .customerId(paymentRequestAvroModel.getCustomerId())
+                .userId(paymentRequestAvroModel.getUserId())
                 .orderId(paymentRequestAvroModel.getOrderId())
                 .price(paymentRequestAvroModel.getPrice())
                 .createdAt(paymentRequestAvroModel.getCreatedAt())
@@ -28,7 +31,7 @@ public class PaymentMessagingDataMapper {
                 .setId(UUID.randomUUID().toString())
                 .setSagaId(sagaId)
                 .setPaymentId(orderEventPayload.getPaymentId())
-                .setCustomerId(orderEventPayload.getCustomerId())
+                .setUserId(orderEventPayload.getUserId())
                 .setOrderId(orderEventPayload.getOrderId())
                 .setPrice(orderEventPayload.getPrice())
                 .setCreatedAt(orderEventPayload.getCreatedAt().toInstant())//??
