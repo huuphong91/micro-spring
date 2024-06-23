@@ -79,7 +79,7 @@ public class OrderMessagingDataMapper {
 //                .build();
 //    }
 
-    public UserModel customerAvroModeltoCustomerModel(UserAvroModel userAvroModel) {
+    public UserModel userAvroModeltoUserModel(UserAvroModel userAvroModel) {
         return UserModel.builder()
                 .id(userAvroModel.getId())
                 .username(userAvroModel.getUsername())

@@ -13,6 +13,7 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 
 import jakarta.annotation.PreDestroy;
 import java.io.Serializable;
+import java.util.concurrent.CompletableFuture;
 
 @Slf4j
 @Component
@@ -24,12 +25,36 @@ public class KafkaProducerImpl<K extends Serializable, V extends SpecificRecordB
         this.kafkaTemplate = kafkaTemplate;
     }
 
+    //deprecated since version 6.0
+//    @Override
+//    public void send(String topicName, K key, V message, ListenableFutureCallback<SendResult<K, V>> callback) {
+//        log.info("Sending message={} to topic={}", message, topicName);
+//        try {
+//            ListenableFuture<SendResult<K, V>> kafkaResultFuture = kafkaTemplate.send(topicName, key, message);
+//            kafkaResultFuture.addCallback(callback);
+//        } catch (KafkaException e) {
+//            log.error("Error on kafka producer with key: {}, message: {} and exception: {}", key, message,
+//                    e.getMessage());
+//            throw new KafkaProducerException("Error on kafka producer with key: " + key + " and message: " + message);
+//        }
+//    }
+
+
+    //since version 6.0
     @Override
-    public void send(String topicName, K key, V message, ListenableFutureCallback<SendResult<K, V>> callback) {
+    public void send(String topicName, K key, V message, CompletableFuture<SendResult<K, V>> callback) {
         log.info("Sending message={} to topic={}", message, topicName);
         try {
-            ListenableFuture<SendResult<K, V>> kafkaResultFuture = kafkaTemplate.send(topicName, key, message);
-            kafkaResultFuture.addCallback(callback);
+            CompletableFuture<SendResult<K, V>> kafkaResultFuture = kafkaTemplate.send(topicName, key, message);
+            //kafkaResultFuture.addCallback(callback);
+            kafkaResultFuture.whenComplete(
+                    (res, error) -> {
+                        if (error != null) {
+                            // handle the exception scenario
+                        } else if (res != null) {
+                            // send data to DB
+                        }
+                    });
         } catch (KafkaException e) {
             log.error("Error on kafka producer with key: {}, message: {} and exception: {}", key, message,
                     e.getMessage());

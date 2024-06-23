@@ -19,10 +19,10 @@ import java.util.List;
 @Component
 public class UserKafkaListener implements KafkaConsumer<UserAvroModel> {
 
-    private final UserKafkaListener userMessageListener;
+    private final UserMessageListener userMessageListener;
     private final OrderMessagingDataMapper orderMessagingDataMapper;
 
-    public CustomerKafkaListener(UserMessageListener userMessageListener,
+    public UserKafkaListener(UserMessageListener userMessageListener,
                                  OrderMessagingDataMapper orderMessagingDataMapper) {
         this.userMessageListener = userMessageListener;
         this.orderMessagingDataMapper = orderMessagingDataMapper;
@@ -31,8 +31,8 @@ public class UserKafkaListener implements KafkaConsumer<UserAvroModel> {
     @Override
     @KafkaListener(id = "${kafka-user-config.user-group-id}", topics = "${order-service.user-topic-name}")
     public void receive(@Payload List<UserAvroModel> messages,
-                        @Header(KafkaHeaders.RECEIVED_MESSAGE_KEY) List<String> keys,
-                        @Header(KafkaHeaders.RECEIVED_PARTITION_ID) List<Integer> partitions,
+                        @Header(KafkaHeaders.RECEIVED_KEY) List<String> keys,
+                        @Header(KafkaHeaders.RECEIVED_PARTITION) List<Integer> partitions,
                         @Header(KafkaHeaders.OFFSET) List<Long> offsets) {
         log.info("{} number of customer create messages received with keys {}, partitions {} and offsets {}",
                 messages.size(),
