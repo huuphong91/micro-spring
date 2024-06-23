@@ -14,12 +14,10 @@
     <packaging>pom</packaging>
     <modules>
         <module>order-domain</module>
+        <module>order-application</module>
         <module>order-dataaccess</module>
         <module>order-messaging</module>
         <module>order-container</module>
-        <module>order-application</module>
-        <module>order-domain/order-application-service</module>
-        <module>order-domain/order-domain-core</module>
     </modules>
 
     <properties>
