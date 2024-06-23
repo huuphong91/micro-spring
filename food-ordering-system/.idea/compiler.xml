@@ -9,21 +9,29 @@
         <outputRelativeToContentRoot value="true" />
         <module name="common-application" />
         <module name="kafka-model" />
-        <module name="order-application-service" />
         <module name="kafka-consumer" />
-        <module name="kafka-producer" />
-        <module name="kafka-config-data" />
-        <module name="user-service" />
-        <module name="outbox" />
-        <module name="order-container" />
+        <module name="payment-messaging" />
         <module name="order-dataaccess" />
         <module name="order-messaging" />
-        <module name="payment-service" />
-        <module name="api-gateway-service" />
+        <module name="payment-application-service" />
         <module name="common-domain" />
         <module name="order-application" />
         <module name="order-domain-core" />
         <module name="saga" />
+        <module name="payment-domain-core" />
+        <module name="user-dataaccess" />
+        <module name="order-application-service" />
+        <module name="kafka-producer" />
+        <module name="kafka-config-data" />
+        <module name="outbox" />
+        <module name="payment-dataaccess" />
+        <module name="user-container" />
+        <module name="order-container" />
+        <module name="user-domain" />
+        <module name="api-gateway-service" />
+        <module name="payment-container" />
+        <module name="user-messaging" />
+        <module name="user-application" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -54,9 +62,20 @@
       <module name="order-messaging" options="-parameters" />
       <module name="order-service" options="-parameters" />
       <module name="outbox" options="-parameters" />
+      <module name="payment-application-service" options="-parameters" />
+      <module name="payment-container" options="-parameters" />
+      <module name="payment-dataaccess" options="-parameters" />
+      <module name="payment-domain" options="-parameters" />
+      <module name="payment-domain-core" options="-parameters" />
+      <module name="payment-messaging" options="-parameters" />
       <module name="payment-service" options="-parameters" />
       <module name="rabbitmq" options="-parameters" />
       <module name="saga" options="-parameters" />
+      <module name="user-application" options="-parameters" />
+      <module name="user-container" options="-parameters" />
+      <module name="user-dataaccess" options="-parameters" />
+      <module name="user-domain" options="-parameters" />
+      <module name="user-messaging" options="-parameters" />
       <module name="user-service" options="-parameters" />
     </option>
   </component>
