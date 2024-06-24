@@ -22,7 +22,7 @@
         <module>payment-service</module>
         <module>user-service</module>
         <module>api-gateway-service</module>
-        <module>infrastructure/kafka</module>
+        <module>infrastructure</module>
     </modules>
 
     <properties>
