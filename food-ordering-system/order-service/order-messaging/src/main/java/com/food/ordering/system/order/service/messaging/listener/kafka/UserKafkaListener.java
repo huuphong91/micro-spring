@@ -29,7 +29,8 @@ public class UserKafkaListener implements KafkaConsumer<UserAvroModel> {
     }
 
     @Override
-    @KafkaListener(id = "${kafka-user-config.user-group-id}", topics = "${order-service.user-topic-name}")
+    // @KafkaListener(id = "${kafka-consumer-config.customer-group-id}", topics = "${order-service.customer-topic-name}")
+    @KafkaListener(id = "user_topic_consumer", topics = "user")
     public void receive(@Payload List<UserAvroModel> messages,
                         @Header(KafkaHeaders.RECEIVED_KEY) List<String> keys,
                         @Header(KafkaHeaders.RECEIVED_PARTITION) List<Integer> partitions,
