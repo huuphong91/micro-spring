@@ -2,6 +2,8 @@ CREATE TYPE order_status AS ENUM ('PENDING', 'PAID', 'APPROVED', 'CANCELLED', 'C
 CREATE TYPE saga_status AS ENUM ('STARTED', 'FAILED', 'SUCCEEDED', 'PROCESSING', 'COMPENSATING', 'COMPENSATED');
 CREATE TYPE outbox_status AS ENUM ('STARTED', 'COMPLETED', 'FAILED');
 
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 CREATE TABLE orders
 (
     id uuid NOT NULL,
@@ -31,8 +33,8 @@ CREATE TABLE users
     username character(255) NOT NULL,
     first_name character(255) NOT NULL,
     last_name character(255) NOT NULL,
-    user_type INTEGER NOT NULL,
-    CONSTRAINT customers_pkey PRIMARY KEY (id)
+    user_type INTEGER DEFAULT 0,
+    CONSTRAINT users_pkey PRIMARY KEY (id)
 );
 
 CREATE TABLE payment_outbox
@@ -50,8 +52,4 @@ CREATE TABLE payment_outbox
     CONSTRAINT payment_outbox_pkey PRIMARY KEY (id)
 );
 
-INSERT INTO orders
-VALUES ('cb3924d4-bdcb-4fe3-9a65-a3be77e34358', '8eedaf01-872d-46e8-89e0-fa0610971ac4', 'e1a90a82-ce20-4e87-8b7f-92e6037de8d3', 2000, 'APPROVED', 'ok');
-INSERT INTO orders
-VALUES ('90ea8763-1967-4a81-9e70-04e1e76eb194', '414fbddd-efcb-4d7f-b747-1af780841538', '414fbddd-efcb-4d7f-b747-1af780841538', 100, 'PAID', 'ok');
 

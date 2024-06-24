@@ -5,6 +5,6 @@ import com.food.ordering.system.user.service.domain.event.UserCreatedEvent;
 
 public interface UserDomainService {
 
-    UserCreatedEvent validateAndInitiateCustomer(User customer);
+    UserCreatedEvent validateAndInitiateUser(User customer);
 
 }

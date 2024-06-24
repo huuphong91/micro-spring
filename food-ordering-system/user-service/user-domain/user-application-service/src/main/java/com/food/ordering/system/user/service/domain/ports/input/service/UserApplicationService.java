@@ -7,6 +7,6 @@ import jakarta.validation.Valid;
 
 public interface UserApplicationService {
 
-    CreateUserResponse createCustomer(@Valid CreateUserCommand createCustomerCommand);
+    CreateUserResponse createUser(@Valid CreateUserCommand createCustomerCommand);
 
 }

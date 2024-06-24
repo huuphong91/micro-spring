@@ -12,11 +12,12 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CreateUserCommand {
     @NotNull
-    private final UUID customerId;
+    private final UUID userId;
     @NotNull
     private final String username;
     @NotNull
     private final String firstName;
     @NotNull
     private final String lastName;
+    private final Integer userType;
 }

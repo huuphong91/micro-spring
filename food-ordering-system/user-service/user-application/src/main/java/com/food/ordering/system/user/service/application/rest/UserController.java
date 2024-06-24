@@ -22,10 +22,10 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<CreateUserResponse> createCustomer(@RequestBody CreateUserCommand
+    public ResponseEntity<CreateUserResponse> createUser(@RequestBody CreateUserCommand
                                                                          createUserCommand) {
-        log.info("Creating customer with username: {}", createUserCommand.getUsername());
-        CreateUserResponse response = userApplicationService.createCustomer(createUserCommand);
+        log.info("Creating user with username: {}", createUserCommand.getUsername());
+        CreateUserResponse response = userApplicationService.createUser(createUserCommand);
         return ResponseEntity.ok(response);
     }
 

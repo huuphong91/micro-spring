@@ -5,7 +5,7 @@ import com.food.ordering.system.user.service.domain.entity.User;
 import com.food.ordering.system.user.service.domain.event.UserCreatedEvent;
 import com.food.ordering.system.user.service.domain.exception.UserDomainException;
 import com.food.ordering.system.user.service.domain.mapper.UserDataMapper;
-import com.food.ordering.system.user.service.domain.ports.output.repository.CustomerRepository;
+import com.food.ordering.system.user.service.domain.ports.output.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,8 +29,8 @@ class UserCreateCommandHandler {
     }
 
     @Transactional
-    public UserCreatedEvent createCustomer(CreateUserCommand createCustomerCommand) {
-        User customer = customerDataMapper.createUserCommandToCustomer(createCustomerCommand);
+    public UserCreatedEvent createUser(CreateUserCommand createCustomerCommand) {
+        User customer = customerDataMapper.createUserCommandToUser(createCustomerCommand);
         UserCreatedEvent customerCreatedEvent = customerDomainService.validateAndInitiateUser(customer);
         User savedCustomer = customerRepository.createUser(customer);
         if (savedCustomer == null) {

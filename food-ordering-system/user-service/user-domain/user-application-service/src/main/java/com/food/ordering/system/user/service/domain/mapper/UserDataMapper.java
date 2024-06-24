@@ -13,7 +13,8 @@ public class UserDataMapper {
         return new User(new UserId(createCustomerCommand.getUserId()),
                 createCustomerCommand.getUsername(),
                 createCustomerCommand.getFirstName(),
-                createCustomerCommand.getLastName());
+                createCustomerCommand.getLastName(),
+                createCustomerCommand.getUserType());
     }
 
     public CreateUserResponse customerToCreateCustomerResponse(User customer, String message) {

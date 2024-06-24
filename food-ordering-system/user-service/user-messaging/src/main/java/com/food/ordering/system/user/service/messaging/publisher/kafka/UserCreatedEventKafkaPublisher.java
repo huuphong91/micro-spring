@@ -10,7 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
-import org.springframework.util.concurrent.ListenableFutureCallback;
+
+import java.util.concurrent.CompletableFuture;
 
 @Slf4j
 @Component
@@ -50,15 +51,15 @@ public class UserCreatedEventKafkaPublisher implements UserMessagePublisher {
         }
     }
 
-    private ListenableFutureCallback<SendResult<String, UserrAvroModel>>
+    private CompletableFuture<SendResult<String, UserAvroModel>>
     getCallback(String topicName, UserAvroModel message) {
-        return new ListenableFutureCallback<>() {
-            @Override
+        return new CompletableFuture() {
+            //@Override
             public void onFailure(Throwable throwable) {
                 log.error("Error while sending message {} to topic {}", message.toString(), topicName, throwable);
             }
 
-            @Override
+            //@Override
             public void onSuccess(SendResult<String, UserAvroModel> result) {
                 RecordMetadata metadata = result.getRecordMetadata();
                 log.info("Received new metadata. Topic: {}; Partition {}; Offset {}; Timestamp {}, at time {}",

@@ -10,7 +10,7 @@ import java.time.ZonedDateTime;
 @Slf4j
 public class UserDomainServiceImpl implements UserDomainService {
 
-    public UserCreatedEvent validateAndInitiateCustomer(User customer) {
+    public UserCreatedEvent validateAndInitiateUser(User customer) {
         //Any Business logic required to run for a customer creation
         log.info("Customer with id: {} is initiated", customer.getId().getValue());
         return new UserCreatedEvent(customer, ZonedDateTime.now(ZoneId.of("UTC")));

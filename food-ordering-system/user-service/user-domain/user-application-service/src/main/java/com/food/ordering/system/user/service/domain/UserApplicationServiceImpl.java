@@ -30,11 +30,11 @@ class UserApplicationServiceImpl implements UserApplicationService {
     }
 
     @Override
-    public CreateUserResponse createCustomer(CreateUserCommand createCustomerCommand) {
-        UserCreatedEvent customerCreatedEvent = customerCreateCommandHandler.createCustomer(createCustomerCommand);
+    public CreateUserResponse createUser(CreateUserCommand createCustomerCommand) {
+        UserCreatedEvent customerCreatedEvent = customerCreateCommandHandler.createUser(createCustomerCommand);
         customerMessagePublisher.publish(customerCreatedEvent);
         return customerDataMapper
-                .customerToCreateCustomerResponse(customerCreatedEvent.getCustomer(),
+                .customerToCreateCustomerResponse(customerCreatedEvent.getUser(),
                         "Customer saved successfully!");
     }
 }

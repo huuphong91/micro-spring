@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>customer-dataaccess</artifactId>
+    <artifactId>user-dataaccess</artifactId>
 
     <dependencies>
         <dependency>
@@ -28,6 +28,11 @@
 <!--            <groupId>com.food.ordering.system</groupId>-->
 <!--            <artifactId>common-dataaccess</artifactId>-->
 <!--        </dependency>-->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
 
 </project>

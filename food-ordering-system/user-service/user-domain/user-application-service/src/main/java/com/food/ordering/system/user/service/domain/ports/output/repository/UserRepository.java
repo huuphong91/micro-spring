@@ -4,5 +4,5 @@ import com.food.ordering.system.user.service.domain.entity.User;
 
 public interface UserRepository {
 
-    Customer createUser(User customer);
+    User createUser(User customer);
 }
