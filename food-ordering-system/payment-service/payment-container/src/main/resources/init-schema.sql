@@ -1,5 +1,5 @@
 CREATE TYPE payment_status AS ENUM ('COMPLETED', 'CANCELLED', 'FAILED');
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+--CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE payments
 (
@@ -38,7 +38,7 @@ CREATE TABLE order_outbox
     created_at TIMESTAMP WITH TIME ZONE NOT NULL,
     processed_at TIMESTAMP WITH TIME ZONE,
     type character(255) NOT NULL,
-    payload jsonb NOT NULL,
+    payload json NOT NULL,
     outbox_status outbox_status NOT NULL,
     payment_status payment_status NOT NULL,
     version integer NOT NULL,
