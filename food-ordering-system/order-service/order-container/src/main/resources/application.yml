@@ -20,6 +20,7 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.H2Dialect
+    hibernate:
         ddl-auto: none
   datasource:
     url: jdbc:h2:mem:order
@@ -37,7 +38,7 @@ spring:
 
 kafka-config:
   #bootstrap-servers: localhost:19092, localhost:29092, localhost:39092
-  bootstrap-servers: localhost:29092
+  bootstrap-servers: localhost:9092
   schema-registry-url-key: schema.registry.url
   schema-registry-url: http://localhost:8081
   num-of-partitions: 3
