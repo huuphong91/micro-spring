@@ -14,6 +14,7 @@ public class UserMessagingDataMapper {
                 .setUsername(customerCreatedEvent.getUser().getUsername())
                 .setFirstName(customerCreatedEvent.getUser().getFirstName())
                 .setLastName(customerCreatedEvent.getUser().getLastName())
+                .setUserType(customerCreatedEvent.getUser().getUserType())
                 .build();
     }
 }

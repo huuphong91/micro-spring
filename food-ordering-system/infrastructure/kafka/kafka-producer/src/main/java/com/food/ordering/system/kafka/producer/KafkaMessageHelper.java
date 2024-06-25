@@ -1,15 +1,20 @@
 package com.food.ordering.system.kafka.producer;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationConfig;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.food.ordering.system.order.service.domain.exception.OrderDomainException;
 import com.food.ordering.system.outbox.OutboxStatus;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.text.StringEscapeUtils;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
+import java.io.File;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 
@@ -23,8 +28,15 @@ public class KafkaMessageHelper {
         this.objectMapper = objectMapper;
     }
 
+    @JsonCreator
     public <T> T getOrderEventPayload(String payload, Class<T> outputType) {
         try {
+            objectMapper.configure(
+                    DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT,
+                    true);
+            payload  = payload.substring(1, payload.length() - 1);
+            payload =StringEscapeUtils.unescapeJson(payload);
+
             return objectMapper.readValue(payload, outputType);
         } catch (JsonProcessingException e) {
             log.error("Could not read {} object!", outputType.getName(), e);

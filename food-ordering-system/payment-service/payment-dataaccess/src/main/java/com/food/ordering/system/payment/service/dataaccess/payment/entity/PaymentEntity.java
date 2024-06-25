@@ -20,7 +20,7 @@ public class PaymentEntity {
 
     @Id
     private UUID id;
-    private UUID customerId;
+    private UUID userId;
     private UUID orderId;
     private BigDecimal price;
     @Enumerated(EnumType.STRING)

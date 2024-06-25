@@ -19,7 +19,7 @@ public class CreditHistoryEntity {
 
     @Id
     private UUID id;
-    private UUID customerId;
+    private UUID userId;
     private BigDecimal amount;
     @Enumerated(EnumType.STRING)
     private TransactionType type;

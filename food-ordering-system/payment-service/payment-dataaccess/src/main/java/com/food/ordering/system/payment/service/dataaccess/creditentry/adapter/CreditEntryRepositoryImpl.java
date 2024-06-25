@@ -31,7 +31,7 @@ public class CreditEntryRepositoryImpl implements CreditEntryRepository {
     @Override
     public Optional<CreditEntry> findByUserId(UserId customerId) {
         return creditEntryJpaRepository
-                .findByCustomerId(customerId.getValue())
+                .findByUserId(customerId.getValue())
                 .map(creditEntryDataAccessMapper::creditEntryEntityToCreditEntry);
     }
 }

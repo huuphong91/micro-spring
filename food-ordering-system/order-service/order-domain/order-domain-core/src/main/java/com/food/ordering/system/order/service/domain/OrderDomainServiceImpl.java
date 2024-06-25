@@ -1,14 +1,17 @@
 package com.food.ordering.system.order.service.domain;
 
+import com.food.ordering.system.domain.valueobject.Money;
 import com.food.ordering.system.order.service.domain.entity.Order;
 //import com.food.ordering.system.order.service.domain.entity.Product;
 //import com.food.ordering.system.order.service.domain.entity.Restaurant;
+import com.food.ordering.system.order.service.domain.entity.Product;
 import com.food.ordering.system.order.service.domain.event.OrderCancelledEvent;
 import com.food.ordering.system.order.service.domain.event.OrderCreatedEvent;
 import com.food.ordering.system.order.service.domain.event.OrderPaidEvent;
 import com.food.ordering.system.order.service.domain.exception.OrderDomainException;
 import lombok.extern.slf4j.Slf4j;
 
+import java.math.BigDecimal;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -33,6 +36,7 @@ public class OrderDomainServiceImpl implements OrderDomainService {
     public OrderCreatedEvent validateAndInitiateOrder(Order order) {
         //validateRestaurant(restaurant);
         //setOrderProductInformation(order, restaurant);
+        setOrderProductInformation(order);
         order.validateOrder();
         order.initializeOrder();
         log.info("Order with id: {} is initiated", order.getId().getValue());
@@ -81,4 +85,13 @@ public class OrderDomainServiceImpl implements OrderDomainService {
 //            }
 //        }));
 //    }
+
+    private void setOrderProductInformation(Order order) {
+        order.getItems().forEach(orderItem -> {
+            Product currentProduct = orderItem.getProduct();
+                currentProduct.updateWithConfirmedNameAndPrice("caffe",
+                        new Money(new BigDecimal("50.00")));
+
+        });
+    }
 }

@@ -22,6 +22,7 @@ public class UserDataAccessMapper {
                 .username(customer.getUsername())
                 .firstName(customer.getFirstName())
                 .lastName(customer.getLastName())
+                .userType(customer.getUserType())
                 .build();
     }
 

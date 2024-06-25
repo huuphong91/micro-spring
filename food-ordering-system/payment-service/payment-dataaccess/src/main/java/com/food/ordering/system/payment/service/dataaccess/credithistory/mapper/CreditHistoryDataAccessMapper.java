@@ -13,7 +13,7 @@ public class CreditHistoryDataAccessMapper {
     public CreditHistory creditHistoryEntityToCreditHistory(CreditHistoryEntity creditHistoryEntity) {
         return CreditHistory.builder()
                 .creditHistoryId(new CreditHistoryId(creditHistoryEntity.getId()))
-                .userId(new UserId(creditHistoryEntity.getCustomerId()))
+                .userId(new UserId(creditHistoryEntity.getUserId()))
                 .amount(new Money(creditHistoryEntity.getAmount()))
                 .transactionType(creditHistoryEntity.getType())
                 .build();
@@ -22,7 +22,7 @@ public class CreditHistoryDataAccessMapper {
     public CreditHistoryEntity creditHistoryToCreditHistoryEntity(CreditHistory creditHistory) {
         return CreditHistoryEntity.builder()
                 .id(creditHistory.getId().getValue())
-                .customerId(creditHistory.getUserId().getValue())
+                .userId(creditHistory.getUserId().getValue())
                 .amount(creditHistory.getAmount().getAmount())
                 .type(creditHistory.getTransactionType())
                 .build();
